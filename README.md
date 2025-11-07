@@ -73,4 +73,82 @@ onTap: () {
 
 Selanjutnya, pembuatan layar back atau kembali ke layar sebelumnya menggunakan `Navigator.pop(context)`. `Navigator.pop(context)` akan ditambahkan di dalam fungsi onPressed/onTap. 
 
+## Tugas 8
+### 1. Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement() pada Flutter. Dalam kasus apa sebaiknya masing-masing digunakan pada aplikasi Football Shop kamu?
+Perbedaan antara Navigator.push() dan Navigator.pushReplacement() terletak pada apa yang dilakukan kepada route yang berada pada atas stack. Metode push() akan menambah route baru di atas route yang sudah ada pada stack. Sedangkan, pushReplacement() menggantikan route yang sudah ada pada atas stack dengan route baru tersebut. Pada aplikasi Street Corner, Navigator.push() digunakan ketika user ingin kembali ke halaman sebelumnya. Contohnya: User membuka drawer dan mengisi form tambah produk lalu kembali ke halaman utama melalui tombol back. Sedangkan, Navigator.pushReplacement() pada kasus ini digunakan ketika pengguna tidak kembali ke halaman sebelumnya, tetapi ganti ke tampilan halaman baru. Contohnya pada aplikasi Street Corner ini, ketika user membuka drawer lalu klik `Halaman Utama`, maka user akan otomatis direct ke tampilan utama. 
+
+### 2. Bagaimana kamu memanfaatkan hierarchy widget seperti Scaffold, AppBar, dan Drawer untuk membangun struktur halaman yang konsisten di seluruh aplikasi?
+Hierarchy widget dimulai dari Scaffold sebagai kerangka utama yang akan membungkus AppBar, Drawer, dan body. Kemudian, AppBar merupakan widget yang akan menjadi header seperti: title dan actions (untuk meletakkan icon). Sedangkan, drawer berfungsi sebagai navigasi terpusat, biasanya terletak di sisi kiri UI aplikasi. Pada contoh aplikasi Street Corner, drawer didefinisikan melalui satu file widgets yang bernama `left_drawer.dart`. Kemudian, widget `LeftDrawer()` diimport di setiap Scaffold yang ada di aplikasi. Contohnya terletak pada file `menu.dart` yaitu `drawer: LeftDrawer(),`.
+
+### 3. Dalam konteks desain antarmuka, apa kelebihan menggunakan layout widget seperti Padding, SingleChildScrollView, dan ListView saat menampilkan elemen-elemen form? Berikan contoh penggunaannya dari aplikasi kamu.
+Kelebihan utama dari masing-masing layout widget sebagai berikut: 
+1. Padding (widget yang memberikan ruang kosong pada widget child)
+Kelebihan: memberikan tampilan form UI yang rapih dan konsisten. Contohnya: pada file `productlist_form.dart`, padding diimplementasikan untuk `TextFormField` sehingga text tidak akan menempel ke tepi layar dan menempel satu sama lain. 
+``` dart 
+Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Nama Produk",
+                    ...
+                  )
+                  ...
+                )
+                ...
+)
+```
+2. SingleChildScrollView (widget yang membungkus child Column atau Row agar tampilan dapat di-scroll)
+Kelebihan: menangani / menyederhanakan design konten form yang ukurannya panjang dan mencegah kesalahan overflow. 
+Contoh implementasi pada aplikasi: 
+Pada file `productlist_form.dart`, SingleChildScrollView diimplementasikan melalui body Form. 
+``` dart
+body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+        ...
+          )
+        )
+)
+```
+3. ListView (widget untuk menampilkan sejumlah besar item di layar satu per satu dengan membuat layar dapat di-scroll)
+Kelebihan: menyederhanakan kode yang lebih ringkas menggunakan ListView dibanding menggunakan SingleChildScrollView() dan Column. 
+Contoh: 
+Pada file `left_drawer.dart`, ListView diimplementasikan melalui child LeftDrawer. 
+```dart
+return Drawer(
+      child: ListView(
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(
+                ...
+            )
+          )
+        ]
+      )
+)
+```
+
+### 4. Bagaimana kamu menyesuaikan warna tema agar aplikasi Football Shop memiliki identitas visual yang konsisten dengan brand toko?
+Warna tema yang konsisten dari aplikasi Street Corner telah didefinisikan pada file `main.dart` melalui widget MaterialApp. 
+``` dart
+theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey).copyWith(secondary: Colors.blueGrey[100]),
+      ),
+```
+Kemudian, implementasi widget lainnya seperti AppBar, ElevatedButton, TextFormField dan lainnya akan otomatis mengambil warna dari tema yang ada di file `main.dart` melalui `MaterialStateProperty`. Contohnya sebagai berikut: 
+```dart
+Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
+                    ),
+                  )
+                )
+)
+```
+
 
