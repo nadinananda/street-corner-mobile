@@ -7,9 +7,9 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
   final List<ItemHomepage> items = [
-    ItemHomepage("All Products", Icons.all_inbox_rounded, Colors.lightBlue),
-    ItemHomepage("My Products", Icons.inventory_2_rounded, Colors.lightGreen),
-    ItemHomepage("Create Product", Icons.create_rounded, Colors.red),
+    ItemHomepage("All Products", Icons.all_inbox_rounded, Colors.pink),
+    ItemHomepage("My Products", Icons.inventory_2_rounded, Colors.red),
+    ItemHomepage("Create Product", Icons.create_rounded, Colors.yellow),
   ];
 
   @override

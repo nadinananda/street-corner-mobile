@@ -204,6 +204,13 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        final name = _name;
+                        final description = _description;
+                        final category = _category;
+                        final thumbnail = _thumbnail;
+                        final price = _price;
+                        final featured = _isFeatured ? "Ya" : "Tidak";
+
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -213,13 +220,14 @@ class _ProductFormPageState extends State<ProductFormPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("Nama Produk: $_name"),
-                                    Text("Deskripsi: $_description"),
-                                    Text("Kategori: $_category"),
-                                    Text("Thumbnail URL: $_thumbnail"),
+                                    Text("Nama Produk: $name"),
+                                    Text("Deskripsi: $description"),
+                                    Text("Kategori: $category"),
+                                    Text("Thumbnail URL: $thumbnail"),
                                     Text(
-                                      "Produk Unggulan: ${_isFeatured ? "Ya" : "Tidak"}",
+                                      "Produk Unggulan: $featured",
                                     ),
+                                    Text("Harga Produk: Rp $price"),
                                   ],
                                 ),
                               ),
@@ -235,6 +243,14 @@ class _ProductFormPageState extends State<ProductFormPage> {
                           },
                         );
                         _formKey.currentState!.reset();
+                        setState(() {
+                          _name = "";
+                          _description = "";
+                          _thumbnail = "";
+                          _price = "";
+                          _isFeatured = false;
+                          _category = _categories.first;
+                        });
                       }
                     },
                     child: const Text(

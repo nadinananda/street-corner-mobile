@@ -60,19 +60,6 @@ Sedangkan, konsep *hot restart* adalah memuat perubahan kode ke dalam VM dan mem
 
 Sumber = https://docs.flutter.dev/tools/hot-reload, https://docs.flutter.dev/tools/hot-reload#how-it-works
 
-### 7. Jelaskan bagaimana kamu menambahkan navigasi untuk berpindah antar layar di aplikasi Flutter.
-Cara menambahkan navigasi untuk berpindah antar layar adalah menggunakan konsep `Navigator`. Konsep navigator digunakan seperti tumpukan (stack) pada layar. Hal pertama yang dilakukan adalah menambahkan `Navigator.push()` di dalam event onPressed/onTap pada sebuah tombol. Fungsi dari `Navigator.push()` adalah untuk menambahkan layar baru. Kemudian layar yang baru ditambahkan akan dibungkus oleh `MaterialPageRoute`. `builder: (context)` akan membangun atau membuat widget dari layar baru. Contoh implementasinya sebagai berikut: 
-
-onTap: () {
-    if (item.name == "All Products") {
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => AllProductsScreen()),
-    );
-}}
-
-Selanjutnya, pembuatan layar back atau kembali ke layar sebelumnya menggunakan `Navigator.pop(context)`. `Navigator.pop(context)` akan ditambahkan di dalam fungsi onPressed/onTap. 
-
 ## Tugas 8
 ### 1. Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement() pada Flutter. Dalam kasus apa sebaiknya masing-masing digunakan pada aplikasi Football Shop kamu?
 Perbedaan antara Navigator.push() dan Navigator.pushReplacement() terletak pada apa yang dilakukan kepada route yang berada pada atas stack. Metode push() akan menambah route baru di atas route yang sudah ada pada stack. Sedangkan, pushReplacement() menggantikan route yang sudah ada pada atas stack dengan route baru tersebut. Pada aplikasi Street Corner, Navigator.push() digunakan ketika user ingin kembali ke halaman sebelumnya. Contohnya: User membuka drawer dan mengisi form tambah produk lalu kembali ke halaman utama melalui tombol back. Sedangkan, Navigator.pushReplacement() pada kasus ini digunakan ketika pengguna tidak kembali ke halaman sebelumnya, tetapi ganti ke tampilan halaman baru. Contohnya pada aplikasi Street Corner ini, ketika user membuka drawer lalu klik `Halaman Utama`, maka user akan otomatis direct ke tampilan utama. 
