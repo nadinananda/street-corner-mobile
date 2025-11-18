@@ -7,9 +7,10 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
   final List<ItemHomepage> items = [
-    ItemHomepage("All Products", Icons.all_inbox_rounded, Colors.pink),
-    ItemHomepage("My Products", Icons.inventory_2_rounded, Colors.red),
-    ItemHomepage("Create Product", Icons.create_rounded, Colors.yellow),
+    ItemHomepage("All Products", Icons.all_inbox_rounded, Colors.brown),
+    ItemHomepage("My Products", Icons.inventory_2_rounded, Colors.green),
+    ItemHomepage("Create Product", Icons.create_rounded, Colors.teal),
+    ItemHomepage("Logout", Icons.logout_rounded, Colors.orange),
   ];
 
   @override
@@ -24,6 +25,7 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       drawer: LeftDrawer(),
+
       // Body
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -38,7 +40,7 @@ class MyHomePage extends StatelessWidget {
                     child: Text(
                       "Selamat datang di Street Corner!",
                       style: TextStyle(
-                        color: Colors.blueGrey,
+                        color: Colors.lightGreen,
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0,
                       ),

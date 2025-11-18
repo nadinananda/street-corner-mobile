@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:street_corner/screens/login.dart';
 import 'package:street_corner/screens/menu.dart';
 import 'package:street_corner/screens/productlist_form.dart';
+import 'package:street_corner/screens/product_entry_list.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -12,7 +14,7 @@ class LeftDrawer extends StatelessWidget {
         children: [
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blueGrey,
+              color: Colors.lightGreen,
             ),
             child: Column(
               children: [
@@ -56,6 +58,30 @@ class LeftDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => ProductFormPage(),
                 ));
+            },
+          ),
+
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Product List'),
+            onTap: () {
+                // Route to news list page
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ProductEntryListPage()),
+                );
+            },
+          ),
+
+          ListTile(
+            leading: const Icon(Icons.logout_rounded),
+            title: const Text('Logout'),
+            onTap: () {
+                // Route to news list page
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                );
             },
           ),
         ],
